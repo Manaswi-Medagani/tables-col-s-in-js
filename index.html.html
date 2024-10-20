@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Input and Table</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="displayName">Enter your username:</h1>
+    <input type="text" id="usernameInput" placeholder="Username">
+    <button id="submitButton">Submit</button>
+
+    <h2>Records Table</h2>
+    <table id="recordsTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Records will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Array of names to insert into the table
+        const names = ['Alice', 'Bob', 'Charlie', 'David', 'Eve'];
+
+        // Function to update the h1 tag with the username
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const username = document.getElementById('usernameInput').value;
+            document.getElementById('displayName').innerText = `Welcome, ${username}!`;
+            populateTable();
+        });
+
+        // Function to populate the table with names
+        function populateTable() {
+            const tableBody = document.getElementById('tableBody');
+            names.forEach((name, index) => {
+                const row = document.createElement('tr');
+
+                // Create S.No cell
+                const snoCell = document.createElement('td');
+                snoCell.innerText = index + 1; // S.No starts from 1
+                row.appendChild(snoCell);
+
+                // Create Name cell
+                const nameCell = document.createElement('td');
+                nameCell.innerText = name;
+                row.appendChild(nameCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+
+</body>
+</html>
